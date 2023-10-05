@@ -1,15 +1,13 @@
 import { HiArrowSmLeft, HiArrowSmRight } from "react-icons/hi";
 import { ImHome3 } from "react-icons/im";
 
-
-
 const SideBar = () => {
     return (
         <div className="fixed top-0 left-0 h-screen w-16 m-0 flex flex-col bg-amber-700 shadow-lg">
 
-        <SideBarIcon icon={<ImHome3 size="28" />} />
-        <SideBarIcon icon={<HiArrowSmLeft size="22" />} />
-        <SideBarIcon icon={<HiArrowSmRight size="22" />} />
+        <SideBarIcon icon={<ImHome3 size="28" />} text={'Home'} />
+        <SideBarIcon icon={<HiArrowSmLeft size="22" />} text={'Next section'} />
+        <SideBarIcon icon={<HiArrowSmRight size="22" />} text={'Previous section'} />
         </div>
     )
 }

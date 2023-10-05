@@ -5,7 +5,9 @@ import LoginForm from './components/LoginForm'
 import HeroForm from './components/HeroForm'
 import heroesService from './services/heroes'
 import loginService from './services/login'
+import textcontentservice from './services/textcontent'
 import SideBar from './components/SideBar'
+import NavBar from './components/NavBar'
 import Analect from './components/Analect'
 import './App.css'
 
@@ -108,6 +110,8 @@ const App = () => {
     <>
     <div className="flex">
       {SideBar()}
+      {NavBar()}
+      {Analect()}
     </div>
 
     <h1>Hall of Heroes</h1>
@@ -118,10 +122,6 @@ const App = () => {
       {heroForm()}
       </div>
       }
-
-      <div className="flex">
-      {Analect()}
-      </div>
 
       <h2>Warriors</h2>
       <ul>
