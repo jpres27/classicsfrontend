@@ -5,14 +5,17 @@ import LoginForm from './components/LoginForm'
 import HeroForm from './components/HeroForm'
 import heroesService from './services/heroes'
 import loginService from './services/login'
-import textcontentservice from './services/textcontent'
+import textcontentService from './services/textcontent'
 import SideBar from './components/SideBar'
-import NavBar from './components/NavBar'
 import Analect from './components/Analect'
 import './App.css'
 
 const App = () => {
-  const [text, setText] = useState([])
+  const [text, setText] = useState({
+      lines: [{
+        content: "Hello World!"
+    }]
+  })
   const [persons, setPersons] = useState([]) 
   const [newPerson, setNewPerson] = useState(' ')
   const [newSword, setNewSword] = useState(' ')
@@ -21,10 +24,25 @@ const App = () => {
   const [user, setUser] = useState(null)
   const [loginVisible, setLoginVisible] = useState(false)
 
-
   useEffect(() => {
     heroesService.getAll().then(initialHeroes => { setPersons(initialHeroes) })
   }, [])
+
+  useEffect(() => {
+        fetchText(1)
+        console.log("useEffect: ", text)
+    }, [])
+
+  const fetchText = async (chapter) => {
+    const chIndex = chapter -1
+    const retrievedText = await textcontentService.get('analects')
+    if (retrievedText) {
+      console.log("fetchText (whole object): ", retrievedText)
+      setText(retrievedText[0].chapters[chIndex])
+      console.log("fetchText (single chapter): ", text)
+    }
+  }
+  
 
   const handleLogin = async (event) => {
     event.preventDefault()
@@ -110,23 +128,8 @@ const App = () => {
     <>
     <div className="flex">
       {SideBar()}
-      {NavBar()}
-      {Analect()}
+      {Analect(text)}
     </div>
-
-    <h1>Hall of Heroes</h1>
-
-    {!user && loginForm()}
-    {user && <div>
-      <p>{user.name} logged in</p>
-      {heroForm()}
-      </div>
-      }
-
-      <h2>Warriors</h2>
-      <ul>
-      {persons.map(person => <li key={person.id}>{person.name} who wields {person.sword}</li>)}
-      </ul>
     </>
   )
 }

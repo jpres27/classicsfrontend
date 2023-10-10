@@ -1,7 +1,10 @@
 import axios from 'axios'
-const baseUrl = '/api/texts'
+const baseUrl = '/api/books'
 
-const get = (book, section) => {
-    const request = axios.get(`${baseUrl}/${book}/${section}`)
-    return request.then(response => response.data)
+const get = async (book) => {
+    const request = await axios.get(`${baseUrl}/${book}`)
+    console.log(request)
+    return request.data
 }
+
+export default { get }

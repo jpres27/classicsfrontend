@@ -2,18 +2,14 @@ import { useState } from 'react'
 import { BsHash } from 'react-icons/bs'
 import { FaChevronDown, FaChevronRight, FaPlus } from 'react-icons/fa'
 
-const texts = ['Analects', 'Mengzi']
-const subjects = ['Confucianism', 'Daoism', 'Military Classics']
-const resources = ['Textbooks', 'Blogs']
+const lunyu = ['學而 - Xue Er', '為政 - Wei Zheng']
 
 const NavBar = () => {
     return (
         <div className="w-80 h-auto m-0 ml-16 bg-amber-600 overflow-hidden">
             <NavBlock />
             <div className="flex flex-col items-center justify-start p-1 m-0">
-                <Dropdown header='Texts' selections={texts} />
-                <Dropdown header='Subjects' selections={subjects} />
-                <Dropdown header='Resources' selections={resources} />
+                <Dropdown header='Analects' selections={lunyu} />
             </div>
         </div>
     )
